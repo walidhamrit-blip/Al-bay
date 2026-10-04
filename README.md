@@ -1,24 +1,22 @@
-# AL BAY — site + carte QR à feuilleter
+# مطعم العيلة — site démo familial et carte QR
 
-Site bilingue anglais/arabe pour un restaurant familial à Tripoli, avec six thèmes luxueux et commande WhatsApp au +218 91 344 2640. La carte QR est une **page distincte**, conçue comme un livre numérique à feuilleter (catégories, boutons précédent/suivant, balayage sur mobile, navigation au clavier), sans la navigation du site principal.
+La marque est affichée **uniquement en arabe : مطعم العيلة**, dans les versions arabe et anglaise. Site vitrine et carte numérique à feuilleter par catégories, six thèmes, panier et commande par WhatsApp au +218 91 344 2640.
 
-## Pages
+## Fichiers du site
 
-- `index.html` — accueil et site vitrine.
-- `menu.html` — carte à feuilleter, accessible directement par QR code à l'adresse `https://al-bay.vercel.app/menu.html` **une fois les nouveaux fichiers publiés**.
-- `QR_Menu_AL_BAY.png` — QR code seul.
-- `QR_Menu_AL_BAY_affiche.pdf` — affiche bilingue imprimable, avec indication « menu test ».
+- `index.html`, `styles.css`, `app.js` : accueil, mise en page et panier.
+- `menu.html`, `menu.css`, `menu.js` : carte QR distincte en forme de livre (catégories, pages animées, balayage mobile).
+- `assets/` : images et polices locales.
+- `QR_Menu_Restaurant_AlEila.png` : QR seul, et `QR_Menu_Restaurant_AlEila_affiche.pdf` : affiche bilingue à imprimer.
 
-Le QR a été généré pour `https://al-bay.vercel.app/menu.html` et son contenu a été vérifié par décodage. **Ne l'imprimez pas pour les clients avant d'avoir déployé `menu.html` et testé le scan sur un téléphone.** Si l'URL définitive change, modifiez `MENU_URL` dans `make_qr.py`, puis relancez `python make_qr.py` (nécessite `qrcode` et Pillow).
+## Mise en ligne
 
-## Publier depuis GitHub sur Vercel
+Le ZIP `Restaurant_AlEila_upload_GitHub.zip` contient les fichiers de déploiement directement à sa racine. Après extraction, remplacez `index.html`, `app.js`, `styles.css`, `menu.html`, `menu.js`, `menu.css` et `assets/` **au même endroit que le `index.html` publié aujourd'hui** dans votre dépôt GitHub. Laissez Vercel redéployer.
 
-Dans GitHub, déposez `menu.html`, `menu.js`, `menu.css` **au même endroit que votre `index.html` existant** et mettez à jour `index.html`, `app.js`, `styles.css` ainsi que le dossier `assets/`. Si votre `index.html` se trouve dans `al-bay/`, déposez ces fichiers dans `al-bay/` ; s'il est à la racine, déposez-les à la racine. **Ne changez pas votre Root Directory Vercel actuel si `https://al-bay.vercel.app/` fonctionne.** Après le commit, attendez le nouveau déploiement, puis testez `https://al-bay.vercel.app/menu.html`. Le ZIP `AL_BAY_upload_GitHub.zip` contient directement les fichiers à déposer dans le dossier où se trouve `index.html`, sans dossier parent supplémentaire.
+La carte reste accessible à `https://al-bay.vercel.app/menu.html`. **L'ancienne adresse Vercel est conservée provisoirement pour les tests**, conformément à votre choix ; elle contient encore l'ancien nom dans l'URL, mais le nom n'apparaît plus dans le site ni sur l'affiche. Le QR actuel pointe toujours vers cette adresse : il continue donc de fonctionner après la mise à jour. Si vous changez plus tard de domaine, modifiez `MENU_URL` dans `make_qr.py`, générez un **nouveau** QR puis remplacez les affiches imprimées.
 
-## Contenu à personnaliser avant lancement officiel
+## Avant un usage officiel
 
-**La carte et les tarifs sont fictifs.** Remplacez les données dans `app.js` (`DISHES`) **et dans `menu.js` (`DISHES`)** pour que le site et la carte QR restent cohérents. L'adresse exacte du restaurant manque encore. Confirmez aussi les conditions de livraison, le numéro WhatsApp et les photos des vrais plats (les photographies actuelles sont des illustrations générées). L'affiche indique « menu test » pour éviter de présenter les prix fictifs comme définitifs.
+La carte et les prix sont des exemples : remplacez les plats/prix dans **`app.js` ET `menu.js`** pour conserver les deux cartes cohérentes. Ajoutez l'adresse précise du restaurant et ses véritables photos. L'affiche porte la mention « TEST MENU » tant que la vraie carte n'est pas prête. Vérifiez aussi que le numéro WhatsApp est actif et que les conditions de livraison correspondent à la réalité.
 
-Le panier se conserve entre le site et la carte QR via le stockage local du navigateur. Dans certains aperçus intégrés, les liens vers WhatsApp sont bloqués : une fenêtre affiche alors le lien complet et un bouton pour le copier. Testez l'envoi final depuis le site Vercel dans un navigateur normal.
-
-Pour produire des versions HTML autonomes sans serveur ni CDN : `python build_standalone.py` (génère `AL_BAY_Standalone.html` et `Menu_AL_BAY_Standalone.html`). Pour tester le site source localement : `python -m http.server 4173 --bind 0.0.0.0` puis ouvrir `/` et `/menu.html`.
+Pour générer les fichiers autonomes : `python build_standalone.py`. Pour régénérer le QR : `python make_qr.py` (nécessite `qrcode` et Pillow). Pour tester localement : `python -m http.server 4173 --bind 0.0.0.0` puis ouvrir `/` et `/menu.html`.

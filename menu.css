@@ -17,3 +17,7 @@ html[dir=rtl] .book-photo-panel:after{right:auto;left:0;background:linear-gradie
 /* Keep ordering reachable while browsing long chapters on phones. */
 .reader-footer{position:sticky;bottom:0;z-index:35}@media(max-width:620px){.book-depth{height:calc(100svh - 267px);min-height:455px}}
 @media(max-width:620px){.quick-whatsapp{display:none}}
+
+/* The name remains Arabic in English and Arabic views. */
+.reader-logo{font-family:Tajawal,Arial,sans-serif;font-size:28px;letter-spacing:-.04em}.reader-logo>span:last-child{direction:rtl}.page-footer>span:first-child{font-family:Tajawal,Arial,sans-serif;font-size:11px;letter-spacing:0}@media(max-width:620px){.reader-logo{font-size:23px}}
+@media(max-width:620px){.cover-main .cover-big{font-size:clamp(57px,15vw,77px);line-height:.78}.cover-main h1{font-size:clamp(43px,11vw,60px)}.cover-main .cover-line{margin:7px 0}.cover-main .cover-cue{margin-top:4px;font-size:10px}}
